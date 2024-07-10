@@ -55,7 +55,7 @@ pip install -r requirements.txt
 
 For this project, we utilize the TPC-H dataset and Coincap API. Follow these steps to generate the data:
 
-    #1 Clean Up Existing Data:
+1 Clean Up Existing Data:
 
 ```bash
 rm tpch-dbgen/*.tbl
