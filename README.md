@@ -79,7 +79,7 @@ To ensure the tables are loaded properly, open a SQLite shell and run a quick co
 sqlite3 tpch.db
 ```
 
-3. Run Count Check:
+2. Run Count Check:
 ```bash
 .read ./upstream_db/count_test.sql
 /* Expected output for a 1GB dataset:
@@ -104,7 +104,7 @@ Run the ETL scripts using the make up command or execute them individually:
 ```bash
 make up
 ```
-3. Individual Scripts:
+2. Individual Scripts:
 ```bash
 time python ./src/data_processor/exchange_data.py 2024-05-29
 time python ./src/data_processor/dim_parts_supplier.py 2024-05-29
