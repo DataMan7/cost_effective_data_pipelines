@@ -66,6 +66,76 @@ make
 ./dbgen -s 1  # Adjust the number to generate a dataset of desired size
 cd ..
 ```
+3. Load Data into SQLite:
+```bash
+sqlite3 tpch.db < ./upstream_db/tpch_DDL_DML.sql > /dev/null 2>&1
+```
+Data Verification
+
+To ensure the tables are loaded properly, open a SQLite shell and run a quick count check:
+
+1. Open SQLite Shell:
+```bash
+sqlite3 tpch.db
+```
+
+3. Run Count Check:
+```bash
+.read ./upstream_db/count_test.sql
+/* Expected output for a 1GB dataset:
+   150000
+   6001215
+   25
+   1500000
+   200000
+   800000
+   5
+   10000
+*/
+.exit  # Exit SQLite
+
+```
+
+Data Processing
+
+Run the ETL scripts using the make up command or execute them individually:
+
+1. Using Make:
+```bash
+make up
+```
+3. Individual Scripts:
+```bash
+time python ./src/data_processor/exchange_data.py 2024-05-29
+time python ./src/data_processor/dim_parts_supplier.py 2024-05-29
+time python ./src/data_processor/one_big_table.py 2024-05-29
+time python ./src/data_processor/wide_month_supplier_metrics.py 2024-05-29
+
+```
+
+   
+Note: The wide_month_supplier_metrics.py script may fail on a base CodeSpace VM. For more powerful CodeSpace VMs, refer to this guide.
+
+Performance
+
+On an 8-core, 32 GB RAM, 1TB HDD 2017 Thinkpad, the wide_month_supplier_metrics.py script ran in 7 minutes and 20 seconds, processing approximately 10GB of data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Let's open a sqlite3 shell and run a quick count check to ensure that the tables were loaded properly.
 
