@@ -53,20 +53,13 @@ pip install -r requirements.txt
 
 ## Generate data
 
-For the example in this repo we use the TPC-H data set and Coincap API.
-Let's generate the TPCH data, by running the following commands in your terminal:
+For this project, we utilize the TPC-H dataset and Coincap API. Follow these steps to generate the data:
+
+    #1 Clean Up Existing Data:
 
 ```bash
-# NOTE: This is to clean up any data (if present) 
 rm tpch-dbgen/*.tbl
-# Generate data set of 1 GB size
-cd tpch-dbgen
-make
-./dbgen -s 1 # Change this number to generate a data of desired size
-cd ..
 
-# NOTE: Load the generated data into a tpch sqlite3 db
-sqlite3 tpch.db < ./upstream_db/tpch_DDL_DML.sql > /dev/null 2>&1
 ```
 
 Let's open a sqlite3 shell and run a quick count check to ensure that the tables were loaded properly.
