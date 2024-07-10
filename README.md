@@ -55,11 +55,18 @@ pip install -r requirements.txt
 
 For this project, we utilize the TPC-H dataset and Coincap API. Follow these steps to generate the data:
 
-1 Clean Up Existing Data:
+1. Clean Up Existing Data:
 
 ```bash
 rm tpch-dbgen/*.tbl
+```
+2 Clean Up Existing Data:
 
+```bash
+cd tpch-dbgen
+make
+./dbgen -s 1  # Adjust the number to generate a dataset of desired size
+cd ..
 ```
 
 Let's open a sqlite3 shell and run a quick count check to ensure that the tables were loaded properly.
